@@ -17,6 +17,9 @@
 		846403712993CAC800F8DE5E /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846403702993CAC800F8DE5E /* ExploreViewController.swift */; };
 		846403732993CAD400F8DE5E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846403722993CAD400F8DE5E /* NotificationViewController.swift */; };
 		846403752993CAE400F8DE5E /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846403742993CAE400F8DE5E /* ConversationViewController.swift */; };
+		CDA9373C299528910095DD1C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA9373B299528910095DD1C /* Extensions.swift */; };
+		CDA9373F29952C5D0095DD1C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA9373E29952C5D0095DD1C /* LoginViewController.swift */; };
+		CDA93741299563D70095DD1C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA93740299563D70095DD1C /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		846403702993CAC800F8DE5E /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		846403722993CAD400F8DE5E /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		846403742993CAE400F8DE5E /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		CDA9373B299528910095DD1C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CDA9373E29952C5D0095DD1C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CDA93740299563D70095DD1C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +74,7 @@
 				8464036A2993CA1F00F8DE5E /* controllers */,
 				846403562993CA0900F8DE5E /* AppDelegate.swift */,
 				846403582993CA0900F8DE5E /* SceneDelegate.swift */,
+				CDA9373B299528910095DD1C /* Extensions.swift */,
 				8464035C2993CA0900F8DE5E /* Main.storyboard */,
 				8464035F2993CA0A00F8DE5E /* Assets.xcassets */,
 				846403612993CA0A00F8DE5E /* LaunchScreen.storyboard */,
@@ -79,6 +86,7 @@
 		8464036A2993CA1F00F8DE5E /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CDA9373D29952C4F0095DD1C /* authentication */,
 				8464036C2993CA4000F8DE5E /* MainTabViewController.swift */,
 				8464036E2993CAA500F8DE5E /* FeedViewController.swift */,
 				846403702993CAC800F8DE5E /* ExploreViewController.swift */,
@@ -93,6 +101,15 @@
 			children = (
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		CDA9373D29952C4F0095DD1C /* authentication */ = {
+			isa = PBXGroup;
+			children = (
+				CDA9373E29952C5D0095DD1C /* LoginViewController.swift */,
+				CDA93740299563D70095DD1C /* RegisterViewController.swift */,
+			);
+			path = authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,9 +183,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDA9373F29952C5D0095DD1C /* LoginViewController.swift in Sources */,
+				CDA93741299563D70095DD1C /* RegisterViewController.swift in Sources */,
 				8464036D2993CA4000F8DE5E /* MainTabViewController.swift in Sources */,
 				846403752993CAE400F8DE5E /* ConversationViewController.swift in Sources */,
 				846403712993CAC800F8DE5E /* ExploreViewController.swift in Sources */,
+				CDA9373C299528910095DD1C /* Extensions.swift in Sources */,
 				846403732993CAD400F8DE5E /* NotificationViewController.swift in Sources */,
 				8464036F2993CAA500F8DE5E /* FeedViewController.swift in Sources */,
 				846403572993CA0900F8DE5E /* AppDelegate.swift in Sources */,
@@ -324,6 +344,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -351,6 +372,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
