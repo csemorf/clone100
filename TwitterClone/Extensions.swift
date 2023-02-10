@@ -5,6 +5,15 @@
 //  Created by Stephen Dowless on 1/12/20.
 //  Copyright © 2020 Stephan Dowless. All rights reserved.
 //
+//navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
+//navigationController?.navigationBar.barStyle = .black
+//        let nav = UINavigationBarAppearance()
+//nav.configureWithOpaqueBackground()
+//UINavigationBar.appearance().standardAppearance = nav
+//UINavigationBar.appearance().scrollEdgeAppearance = nav
+//UINavigationBar.appearance().compactAppearance = nav
+//
+
 
 import UIKit
 class Utilities {
