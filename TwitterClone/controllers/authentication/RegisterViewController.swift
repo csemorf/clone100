@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class RegisterViewController: UIViewController {
     let imagePicker = UIImagePickerController()
+    
+    var profileImage :UIImage?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +40,7 @@ class RegisterViewController: UIViewController {
         donthavebtn.addTarget(self, action: #selector(login), for: .touchUpInside)
         donthavebtn.anchor(left: view.leftAnchor,bottom:view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor,paddingLeft: 40,paddingRight: 40)
     }
-   
+    
     lazy var avatarButton:UIButton = {
         let btn = UIButton(type: .system)
         btn.setImage(UIImage(named: "plus_photo"), for: .normal)
@@ -45,7 +51,7 @@ class RegisterViewController: UIViewController {
         return btn
     }()
     
-   lazy var registerButton:UIButton = {
+    lazy var registerButton:UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Register", for: .normal)
         btn.backgroundColor = .white
@@ -63,19 +69,19 @@ class RegisterViewController: UIViewController {
     } ()
     lazy var pwViews:UIView = {
         let image = UIImage(named: "ic_lock_outline_white_2x")
-        let view = Utilities.inputContainerView(im: image, textField:pwTf)   
+        let view = Utilities.inputContainerView(im: image, textField:pwTf)
         return view
     } ()
     lazy var fnViews:UIView = {
         let image = UIImage(named: "ic_person_outline_white_2x")
         let view = Utilities.inputContainerView(im: image, textField:fntf)
-            
+        
         return view
     } ()
     lazy var unViews:UIView = {
         let image = UIImage(named: "ic_person_outline_white_2x")
         let view = Utilities.inputContainerView(im: image, textField:untf)
-            
+        
         return view
     } ()
     let emailTf :UITextField = {
@@ -102,6 +108,30 @@ class RegisterViewController: UIViewController {
     
     @objc func handleSignup(){
         
+        guard let profileImage = profileImage else {
+            print("fill image"); return
+        }
+        
+        guard let username = untf.text,
+              let fullname = fntf.text,
+              let email = emailTf.text,
+              let pw = pwTf.text else {return}
+
+
+        let user = UserCredentials(email: email, password: pw, username: username, fullname: fullname, profileImage: profileImage)
+        
+        AuthService.shared.registerUser(userCredential:user) { err, ref in
+            print("success register")
+            print("handle successfully")
+            
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let window = windowScene.windows.first else { return }
+
+            
+            guard let vc = window.rootViewController as? MainTabViewController else {return}
+                    vc.showLoginUserIfNotLogin()
+            self.dismiss(animated: true)
+        }
     }
     
     @objc func handleAddProfilePhoto(){
@@ -114,6 +144,8 @@ class RegisterViewController: UIViewController {
 extension RegisterViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            profileImage = editImage
+            
             avatarButton.setImage(editImage.withRenderingMode(.alwaysOriginal) , for: .normal)
             avatarButton.layer.cornerRadius = 128/2
             avatarButton.layer.masksToBounds = true

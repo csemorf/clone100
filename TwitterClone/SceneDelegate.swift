@@ -20,17 +20,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          trans.configureWithDefaultBackground()
         UITabBar.appearance().standardAppearance = trans
         UITabBar.appearance().scrollEdgeAppearance = trans
-        let nav = UINavigationBarAppearance()
-         nav.configureWithOpaqueBackground()
-        UINavigationBar.appearance().standardAppearance = nav
-        UINavigationBar.appearance().scrollEdgeAppearance = nav
-        UINavigationBar.appearance().compactAppearance = nav
-        
+//        let nav = UINavigationBarAppearance()
+//         nav.configureWithOpaqueBackground()
+//        UINavigationBar.appearance().standardAppearance = nav
+//        UINavigationBar.appearance().scrollEdgeAppearance = nav
+//        UINavigationBar.appearance().compactAppearance = nav
+//
 
         
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = UINavigationController(rootViewController:  LoginViewController())
+//        window?.rootViewController = UINavigationController(rootViewController:  LoginViewController())
+        window?.rootViewController = MainTabViewController()
         window?.makeKeyAndVisible()
     }
 

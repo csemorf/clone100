@@ -6,6 +6,7 @@
 //
 //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
 
+import Firebase
 
 import UIKit
 extension LoginViewController {
@@ -82,12 +83,29 @@ class LoginViewController: UIViewController {
     
     
     @objc func handleLogin(){
-        print("asd")
+        guard let email=emailTf.text,let pw = pwTf.text else{return}
+        AuthService.shared.loginUser(email: email, pw: pw) { result, err in
+            if err != nil {
+                print("error")
+                return
+            }
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let window = windowScene.windows.first else { return }
+
+            
+            guard let vc = window.rootViewController as? MainTabViewController else {return}
+                    vc.showLoginUserIfNotLogin()
+                    
+            
+            self.dismiss(animated: true)
+            
+        }
     }
     
     @objc func handleSignup(){
         let reController = RegisterViewController()
         navigationController?.pushViewController(reController, animated: true)
     }
+    
     
 }
