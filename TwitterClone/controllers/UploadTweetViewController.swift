@@ -54,7 +54,7 @@ class UploadTweetViewController: UIViewController {
         tweetButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         tweetButton.frame = CGRect(x: 0, y: 0, width: 64, height: 32)
         tweetButton.layer.cornerRadius = 32/2
-        tweetButton.addTarget(self, action:#selector(UploadTweetViewController.handletweet), for: .touchUpInside)
+        tweetButton.addTarget(self, action:#selector(UploadTweetViewController.handleuploadtweet), for: .touchUpInside)
         return tweetButton
     }()
     
@@ -92,7 +92,7 @@ class UploadTweetViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @objc func handletweet(){
+    @objc func handleuploadtweet(){
         TweetService.shared.uploadTweet(tweet: captionTextView.text) { err, ref in
             if let err = err {
                 print("err \(err.localizedDescription)")

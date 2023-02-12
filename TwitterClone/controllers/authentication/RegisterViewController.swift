@@ -112,7 +112,7 @@ class RegisterViewController: UIViewController {
             print("fill image"); return
         }
         
-        guard let username = untf.text,
+        guard let username = untf.text?.lowercased(),
               let fullname = fntf.text,
               let email = emailTf.text,
               let pw = pwTf.text else {return}

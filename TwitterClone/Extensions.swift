@@ -12,8 +12,7 @@
 //UINavigationBar.appearance().standardAppearance = nav
 //UINavigationBar.appearance().scrollEdgeAppearance = nav
 //UINavigationBar.appearance().compactAppearance = nav
-//
-
+//collectionView.contentInsetAdjustmentBehavior = .never
 
 import UIKit
 class Utilities {

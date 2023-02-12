@@ -101,6 +101,12 @@ class MainTabViewController: UITabBarController {
     }
     func templateNavigation(image:UIImage?, vc:UIViewController) -> UINavigationController{
         let nav =    UINavigationController(rootViewController: vc)
+        let navA = UINavigationBarAppearance()
+         navA.configureWithOpaqueBackground()
+        nav.navigationBar.standardAppearance = navA
+        nav.navigationBar.scrollEdgeAppearance = navA
+        nav.navigationBar.compactAppearance = navA
+
         nav.tabBarItem.image = image
         nav.navigationBar.barTintColor = .white
         return nav

@@ -6,8 +6,13 @@
 //
 
 import UIKit
+protocol TweetCellDelegateTapProfileImage: AnyObject {
+    func didProfileImageTap()
+}
 
 class TweetCell:UICollectionViewCell {
+    weak var delegate:TweetCellDelegateTapProfileImage?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
@@ -21,36 +26,47 @@ class TweetCell:UICollectionViewCell {
     
     func configure() {
         guard let tweet = tweet else {return}
-        captionLabel.text = tweet.caption
-        infoLabel.text = tweet.user.username
-        profileImage.sd_setImage(with: tweet.user.profileImageUrl)
+        
+        let viewModel = TweetViewModel(tweet: tweet)
+        self.captionLabel.text = tweet.caption
+    
+        self.profileImage.sd_setImage(with: viewModel.profileImageUrl)
+        
+        DispatchQueue.main.async {
+            self.infoLabel.attributedText = viewModel.userInfoText
+        }
+        
 //        print(tweet.user.username)
     }
     
-    let profileImage:UIImageView = {
+    lazy var profileImage:UIImageView = {
         let imv = UIImageView()
         imv.contentMode = .scaleAspectFill
         imv.clipsToBounds = true
+        imv.backgroundColor = .twitterBlue
         imv.setDimensions(width: 48, height: 48)
         imv.layer.cornerRadius = 48/2
-//        imv.layer.masksToBounds = 
-        imv.backgroundColor = .twitterBlue
+        imv.isUserInteractionEnabled = true
+        imv.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TweetCell.profileImageTap)))
+        
         return imv
     }()
+    
     let infoLabel:UILabel = {
        let lbl = UILabel()
         lbl.font = UIFont.boldSystemFont(ofSize: 16)
         lbl.text = "Eddie Brock @venom"
-        
         return lbl
     }()
     
-
+   @objc func profileImageTap(){
+       delegate?.didProfileImageTap()
+    }
     let captionLabel:UILabel = {
        let lbl = UILabel()
         lbl.numberOfLines = 0
         lbl.font = UIFont.systemFont(ofSize: 14)
-        lbl.text = "Caption Label"
+        lbl.text = "Some first Caption Label"
         return lbl
     }()
     
