@@ -9,7 +9,7 @@ import UIKit
 
 
 class ProfileViewController: UICollectionViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionviewUI()
@@ -19,13 +19,16 @@ class ProfileViewController: UICollectionViewController {
         collectionView.contentInsetAdjustmentBehavior = .never
         
     }
-   func configureCollectionviewUI(){
-       navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
-       navigationController?.navigationBar.barStyle = .black
-       navigationController?.navigationBar.isHidden = true
+    func configureCollectionviewUI(){
+               navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
+               navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.isHidden = true
         collectionView.backgroundColor = .white
     }
 }
+
+
+
 
 extension ProfileViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -50,7 +53,7 @@ extension ProfileViewController:UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 300)
+        return CGSize(width: view.frame.width, height: 350)
 
     }
     
