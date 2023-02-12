@@ -7,7 +7,7 @@
 
 import UIKit
 protocol TweetCellDelegateTapProfileImage: AnyObject {
-    func didProfileImageTap()
+    func didProfileImageTap(cell:TweetCell)
 }
 
 class TweetCell:UICollectionViewCell {
@@ -60,7 +60,7 @@ class TweetCell:UICollectionViewCell {
     }()
     
    @objc func profileImageTap(){
-       delegate?.didProfileImageTap()
+       delegate?.didProfileImageTap(cell: self)
     }
     let captionLabel:UILabel = {
        let lbl = UILabel()

@@ -27,6 +27,7 @@ class TweetViewModel {
         return att
         
     }
+    
     var timestamp:String {
         let datef = DateComponentsFormatter()
         datef.allowedUnits = [.day, .minute,.hour,.second, .weekOfMonth]

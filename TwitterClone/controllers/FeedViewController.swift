@@ -7,6 +7,8 @@
 
 import UIKit
 import SDWebImage
+//ONLY TWO FEED.USER
+
 
 class FeedViewController:UICollectionViewController {
     var user:User?  {
@@ -51,7 +53,16 @@ class FeedViewController:UICollectionViewController {
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftImage)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.overrideUserInterfaceStyle = .light
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.isHidden = false
+    }
 }
+
+//Profile.HeaderViewModel
+
 
 
 extension FeedViewController {
@@ -76,9 +87,18 @@ extension FeedViewController:UICollectionViewDelegateFlowLayout {
 }
 
 extension FeedViewController:TweetCellDelegateTapProfileImage {
-    func didProfileImageTap() {
-        print("tap from collectionview")
-        let c = ProfileViewController(collectionViewLayout: UICollectionViewFlowLayout())
+   
+    
+    func didProfileImageTap(cell:TweetCell) {
+        guard let user = cell.tweet?.user else {return}
+        let c = ProfileViewController(user: user)
         navigationController?.pushViewController(c, animated: true)
     }
 }
+
+//cell.Tweet
+
+
+
+
+

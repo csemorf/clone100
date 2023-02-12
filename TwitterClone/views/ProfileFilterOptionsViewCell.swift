@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileFilterViewCell: UICollectionViewCell {
+class ProfileFilterOptionsViewCell: UICollectionViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
@@ -15,6 +15,13 @@ class ProfileFilterViewCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
+    
+    var options: ProfileFilterOptions! {
+        didSet {
+            titleLabel.text = options.description
+        }
+    }
+    
     
     
     override var isSelected: Bool

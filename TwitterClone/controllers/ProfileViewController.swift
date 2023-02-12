@@ -9,22 +9,34 @@ import UIKit
 
 
 class ProfileViewController: UICollectionViewController {
+    var user:User
+    
+    
+    init(user:User){
+        self.user = user
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionviewUI()
         collectionView.register(TweetCell.self, forCellWithReuseIdentifier: "tweetCell")
-        collectionView.register(HeaderProfileCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerCell")
+        collectionView.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerCell")
         
         collectionView.contentInsetAdjustmentBehavior = .never
-        
     }
+    
     func configureCollectionviewUI(){
-               navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
-               navigationController?.navigationBar.barStyle = .black
+       navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
+       navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.isHidden = true
         collectionView.backgroundColor = .white
     }
+    
 }
 
 
@@ -40,13 +52,13 @@ extension ProfileViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! HeaderProfileCell
-        
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! ProfileHeader
+        header.user = user
         return header
     }
-    
-    
 }
+
+
 extension ProfileViewController:UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 120)

@@ -8,7 +8,16 @@
 import UIKit
 
 
-class HeaderProfileCell:UICollectionReusableView {
+class ProfileHeader:UICollectionReusableView {
+    
+    var user:User? {
+        didSet {
+            configure()
+        }
+    }
+
+    
+    
     private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .twitterBlue
@@ -19,20 +28,49 @@ class HeaderProfileCell:UICollectionReusableView {
         return view
     }()
     
+    lazy var followingLabel: UILabel = {
+        let label = UILabel()
+        let followTap = UITapGestureRecognizer(target: self, action:
+                                                #selector (ProfileHeader.handleFollowersTapped))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(followTap)
+        label.text = "0 Followings"
+        return label
+    }()
+    
+    lazy var followersLabel: UILabel = {
+        let label = UILabel()
+        label.text = "0 Followers"
+        let followTap = UITapGestureRecognizer(target: self, action:
+                                                #selector (ProfileHeader.handleFollowingTapped) )
+        label.isUserInteractionEnabled  = true
+        label.addGestureRecognizer(followTap)
+        return label
+    }()
+    
+    
+    @objc func handleFollowersTapped(){
         
+    }
+    @objc func handleFollowingTapped(){
+        
+    }
+    
         private lazy var backButton: UIButton = {
             let button = UIButton (type: .system)
-            button.setImage (#imageLiteral(resourceName: "baseline_arrow_back_white_24dp.png").withRenderingMode(.alwaysOriginal), for: .normal)
-            button.addTarget (self, action: #selector (handleDismissal), for: .touchUpInside)
+            button.setImage( #imageLiteral(resourceName: "baseline_arrow_back_white_24dp").withRenderingMode(.alwaysOriginal), for: .normal)
+            button.addTarget(self, action: #selector (handleDismissal), for: .touchUpInside)
             return button
         }()
-        
+    
+    
+    
         @objc func handleDismissal(){
-            
+
         }
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
+        iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.backgroundColor = .lightGray
         iv.layer.borderColor = UIColor.white.cgColor
@@ -66,7 +104,7 @@ class HeaderProfileCell:UICollectionReusableView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .lightGray
-        label.text = "venom"
+        label.text = "@venom"
         return label
     }()
         private let bioLabel: UILabel = {
@@ -76,9 +114,24 @@ class HeaderProfileCell:UICollectionReusableView {
         label.text = "This is a user bio that will span more than one line for test purposes"
         return label
         }()
+    let filterView = ProfileFilterMiniCollectionView()
+    
     
     @objc func handleEditProfileFollow(){
         
+    }
+    
+    
+    
+    func configure() {
+        guard let user = user else {return}
+        let vm = ProfileHeaderViewModel(user:user)
+        
+        profileImageView.sd_setImage(with: user.profileImageUrl)
+        
+        editProfileFollowButton.setTitle(vm.actionButtonTitle, for: .normal)
+        followersLabel.attributedText = vm.followers
+        followingLabel.attributedText = vm.followings
     }
     
     override init(frame: CGRect) {
@@ -103,7 +156,14 @@ class HeaderProfileCell:UICollectionReusableView {
         filterView.anchor(left:leftAnchor,bottom: bottomAnchor, right: rightAnchor,height: 50)
         
         addSubview(divideView)
-        divideView.anchor(left:leftAnchor,bottom: bottomAnchor,width: frame.width/3,height: 2)
+        divideView.anchor(left:leftAnchor,bottom: bottomAnchor,paddingBottom: 24, width: frame.width/3,height: 2)
+        let followStack = UIStackView(arrangedSubviews: [followingLabel,followersLabel])
+        addSubview(followStack)
+        followStack.spacing = 8
+        followStack.axis = .horizontal
+        followStack.distribution = .fillProportionally
+        
+        followStack.anchor(top: stack.bottomAnchor, left:leftAnchor,paddingTop: 8, paddingLeft: 12)
     }
     
     let divideView : UIView = {
@@ -112,23 +172,20 @@ class HeaderProfileCell:UICollectionReusableView {
         return divideView
     }()
     
-    let filterView = ProfileFilterView()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
-    
-    
-            required init?(coder: NSCoder) {
-                fatalError("init(coder:) has not been implemented")
-            }
-            
-        }
-extension HeaderProfileCell:ProfileFilterViewDelegate {
-    func setOffsetDivideView(v: ProfileFilterView, indexPath: IndexPath) {
-        guard let cell = v.collectionView.cellForItem(at: indexPath) as? ProfileFilterViewCell else {return}
+}
+extension ProfileHeader:ProfileFilterViewDelegate {
+    func setOffsetDivideView(v: ProfileFilterMiniCollectionView, indexPath: IndexPath) {
+        guard let cell = v.collectionView.cellForItem(at: indexPath) as? ProfileFilterOptionsViewCell else {return}
         let offset = cell.frame.origin.x
         
         UIView.animate(withDuration: 0.2) {
             self.divideView.frame.origin.x = offset
         }
+//        self.divideView.anchor(width:self.frame.width/3)
         
     }
 }
