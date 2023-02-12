@@ -23,7 +23,7 @@ class UploadTweetViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureNavBackground()
-
+        
         
     }
     func configureNavBackground(){
@@ -31,10 +31,10 @@ class UploadTweetViewController: UIViewController {
         app.configureWithTransparentBackground()
         navigationController?.navigationBar.standardAppearance = app
         navigationController?.navigationBar.scrollEdgeAppearance = app
- 
-//
-//        navigationController?.navigationBar.barTintColor = .white
-//        navigationController?.navigationBar.isTranslucent = false
+        
+        //
+        //        navigationController?.navigationBar.barTintColor = .white
+        //        navigationController?.navigationBar.isTranslucent = false
     }
     
     lazy var cancelButton:UIButton = {
@@ -46,15 +46,15 @@ class UploadTweetViewController: UIViewController {
         return cancelButton
     }()
     
-     lazy var tweetButton:UIButton = {
-         let tweetButton = UIButton(type: .system)
-         tweetButton.setTitle("Tweet", for: .normal)
-         tweetButton.backgroundColor = .twitterBlue
-         tweetButton.setTitleColor(.white, for: .normal)
-         tweetButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-         tweetButton.frame = CGRect(x: 0, y: 0, width: 64, height: 32)
-         tweetButton.layer.cornerRadius = 32/2
-         tweetButton.addTarget(self, action:#selector(UploadTweetViewController.handletweet), for: .touchUpInside)
+    lazy var tweetButton:UIButton = {
+        let tweetButton = UIButton(type: .system)
+        tweetButton.setTitle("Tweet", for: .normal)
+        tweetButton.backgroundColor = .twitterBlue
+        tweetButton.setTitleColor(.white, for: .normal)
+        tweetButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        tweetButton.frame = CGRect(x: 0, y: 0, width: 64, height: 32)
+        tweetButton.layer.cornerRadius = 32/2
+        tweetButton.addTarget(self, action:#selector(UploadTweetViewController.handletweet), for: .touchUpInside)
         return tweetButton
     }()
     
@@ -87,12 +87,21 @@ class UploadTweetViewController: UIViewController {
         
         profileImage.sd_setImage(with: user.profileImageUrl)
     }
-                                                           
+    
     @objc func handlecancel(){
-            dismiss(animated: true)
-        }
+        dismiss(animated: true)
+    }
     
     @objc func handletweet(){
-            print("tweet")
+        TweetService.shared.uploadTweet(tweet: captionTextView.text) { err, ref in
+            if let err = err {
+                print("err \(err.localizedDescription)")
+                return
+            }
+            
+            print("ok")
+            self.dismiss(animated: true)
         }
+    }
 }
+

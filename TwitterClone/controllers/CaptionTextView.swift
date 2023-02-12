@@ -24,7 +24,7 @@ class CaptionTextView: UITextView {
         isScrollEnabled = false
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: 300).isActive = true
-        font = UIFont.boldSystemFont(ofSize: 16)
+        font = UIFont.systemFont(ofSize: 16)
         
         addSubview(placeholderLbl)
         placeholderLbl.anchor(top:topAnchor,left: leftAnchor,paddingTop: 8,paddingLeft: 4)
@@ -36,8 +36,6 @@ class CaptionTextView: UITextView {
         fatalError("init(coder:) has not been implemented")
     }
     @objc func textViewChange(){
-        print("change")
-        
         placeholderLbl.isHidden = !text.isEmpty
     }
 }

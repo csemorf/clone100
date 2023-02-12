@@ -26,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        UINavigationBar.appearance().scrollEdgeAppearance = nav
 //        UINavigationBar.appearance().compactAppearance = nav
 //
+        
 
         
         guard let scene = (scene as? UIWindowScene) else { return }

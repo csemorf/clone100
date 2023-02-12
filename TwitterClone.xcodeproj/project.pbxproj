@@ -32,6 +32,8 @@
 		CDA9373C299528910095DD1C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA9373B299528910095DD1C /* Extensions.swift */; };
 		CDA9373F29952C5D0095DD1C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA9373E29952C5D0095DD1C /* LoginViewController.swift */; };
 		CDA93741299563D70095DD1C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA93740299563D70095DD1C /* RegisterViewController.swift */; };
+		CDB744E12997C84500D53F6A /* TweetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB744E02997C84500D53F6A /* TweetService.swift */; };
+		CDB744E32997D48F00D53F6A /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB744E22997D48F00D53F6A /* TweetCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		CDA9373B299528910095DD1C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CDA9373E29952C5D0095DD1C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CDA93740299563D70095DD1C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		CDB744E02997C84500D53F6A /* TweetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetService.swift; sourceTree = "<group>"; };
+		CDB744E22997D48F00D53F6A /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TweetCell.swift; path = TwitterClone/API/TweetCell.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				CD0BF9022996D25B005FA4BF /* CaptionTextView.swift */,
+				CDB744E22997D48F00D53F6A /* TweetCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 			children = (
 				CD0BF8F42996844E005FA4BF /* AuthService.swift */,
 				CD0BF8F629969F91005FA4BF /* UserService.swift */,
+				CDB744E02997C84500D53F6A /* TweetService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -253,8 +259,10 @@
 				CDA9373F29952C5D0095DD1C /* LoginViewController.swift in Sources */,
 				CDA93741299563D70095DD1C /* RegisterViewController.swift in Sources */,
 				8464036D2993CA4000F8DE5E /* MainTabViewController.swift in Sources */,
+				CDB744E32997D48F00D53F6A /* TweetCell.swift in Sources */,
 				CD0BF8F52996844E005FA4BF /* AuthService.swift in Sources */,
 				846403752993CAE400F8DE5E /* ConversationViewController.swift in Sources */,
+				CDB744E12997C84500D53F6A /* TweetService.swift in Sources */,
 				846403712993CAC800F8DE5E /* ExploreViewController.swift in Sources */,
 				CD0BF8F729969F91005FA4BF /* UserService.swift in Sources */,
 				CD0BF8FC2996AE50005FA4BF /* User.swift in Sources */,
