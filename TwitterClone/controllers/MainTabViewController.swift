@@ -15,7 +15,6 @@ class MainTabViewController: UITabBarController {
             guard let nav = viewControllers?.first as? UINavigationController else {return}
             guard let vc = nav.viewControllers[0] as? FeedViewController else {return}
             vc.user = user
-            print("main user has set ")
         }
     }
     override func viewDidLoad() {

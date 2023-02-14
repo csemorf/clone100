@@ -17,10 +17,10 @@ class TweetViewModel {
     }
     
     var userInfoText:NSAttributedString {
-        let att = NSMutableAttributedString(string: tweet.user.fullname,
+        let att = NSMutableAttributedString(string: user.fullname,
                                      attributes: [NSAttributedString.Key.foregroundColor : UIColor.black,.font:UIFont.boldSystemFont(ofSize: 14)])
         
-        att.append(NSAttributedString(string: " @\(tweet.user.username)",
+        att.append(NSAttributedString(string: " @\(user.username)",
                                       attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
                                                    NSAttributedString.Key.foregroundColor:UIColor.lightGray]))
         att.append(NSAttributedString(string: " • \(timestamp)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray]))

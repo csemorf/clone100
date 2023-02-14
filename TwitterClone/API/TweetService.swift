@@ -15,7 +15,7 @@ struct Tweet {
     let caption:String
     var date:Date!
     let user:User
-//tweetId: String , uid: String, retweets: Int, likes: Int, date: Int
+
     
     init(tweetId:String, dict: [String: Any],user:User) {
         self.tweetId = tweetId
@@ -42,15 +42,23 @@ class TweetService {
         
         let values = ["caption":tweet,"uid":uid,"timestamp":timestamp,"likes":likes,"retweets":retweets] as [String:Any]
         
+        let ref = REF_tweet.childByAutoId()
+        
+        ref.updateChildValues(values) { err, ref in
+            guard  let tweetId = ref.key else {return}
+            
+            REF_USER_TWEET.child(uid).updateChildValues([tweetId:1], withCompletionBlock: withCompletionBlock)
+        }
         
         
-        REF_tweet.childByAutoId().updateChildValues(values, withCompletionBlock: withCompletionBlock)
     }
     func fetchTweets( completions: @escaping ([Tweet]) -> Void){
         var tweets = [Tweet]()
         
         REF_tweet.observe(.childAdded) { snapshot  in
-            guard let dict = snapshot.value as? [String:Any],let uid = dict["uid"] as? String else {return}
+            guard let dict = snapshot.value as? [String:Any],
+                  let uid = dict["uid"] as? String else {return}
+
             let key = snapshot.key
             
             
@@ -62,5 +70,22 @@ class TweetService {
             }
         }
     }
+    func fetchTweets(for user:User, completions: @escaping ([Tweet])->Void){
+        
+        var tweets = [Tweet]()
+        REF_USER_TWEET.child(user.uid).observe(.childAdded) { snapshot in
+//            guard let data = snapshot.value as? [String:Any] else {return}
+            let tweetid = snapshot.key
+            REF_tweet.child(tweetid).observeSingleEvent(of: .value, with: { snapshot in
+                guard let dict = snapshot.value as? [String:Any] else {return}
+                let t = Tweet(tweetId: tweetid, dict: dict, user: user)
+                tweets.append(t)
+                completions(tweets)
+            })
+        }
+        
+    }
 }
+
+
 

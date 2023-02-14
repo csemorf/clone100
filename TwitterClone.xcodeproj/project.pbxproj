@@ -40,7 +40,7 @@
 		CDB744E12997C84500D53F6A /* TweetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB744E02997C84500D53F6A /* TweetService.swift */; };
 		CDB744E32997D48F00D53F6A /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB744E22997D48F00D53F6A /* TweetCell.swift */; };
 		CDF482A929992FD500C1EEBA /* ProfileFilterOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF482A829992FD500C1EEBA /* ProfileFilterOptions.swift */; };
-		CDF482AB299950CF00C1EEBA /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF482AA299950CF00C1EEBA /* ProfileHeaderViewModel.swift */; };
+		CDF482AB299950CF00C1EEBA /* ProfileHeaderUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF482AA299950CF00C1EEBA /* ProfileHeaderUserViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,7 +74,7 @@
 		CDB744E02997C84500D53F6A /* TweetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetService.swift; sourceTree = "<group>"; };
 		CDB744E22997D48F00D53F6A /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TweetCell.swift; path = TwitterClone/API/TweetCell.swift; sourceTree = SOURCE_ROOT; };
 		CDF482A829992FD500C1EEBA /* ProfileFilterOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterOptions.swift; sourceTree = "<group>"; };
-		CDF482AA299950CF00C1EEBA /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
+		CDF482AA299950CF00C1EEBA /* ProfileHeaderUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderUserViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,7 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				84DDBE412998E950007FCC82 /* TweetViewModel.swift */,
-				CDF482AA299950CF00C1EEBA /* ProfileHeaderViewModel.swift */,
+				CDF482AA299950CF00C1EEBA /* ProfileHeaderUserViewModel.swift */,
 			);
 			path = viewmodel;
 			sourceTree = "<group>";
@@ -295,7 +295,7 @@
 				846403752993CAE400F8DE5E /* ConversationViewController.swift in Sources */,
 				84DDBE4A299914E5007FCC82 /* ProfileFilterOptionsViewCell.swift in Sources */,
 				CDB744E12997C84500D53F6A /* TweetService.swift in Sources */,
-				CDF482AB299950CF00C1EEBA /* ProfileHeaderViewModel.swift in Sources */,
+				CDF482AB299950CF00C1EEBA /* ProfileHeaderUserViewModel.swift in Sources */,
 				846403712993CAC800F8DE5E /* ExploreViewController.swift in Sources */,
 				CD0BF8F729969F91005FA4BF /* UserService.swift in Sources */,
 				CD0BF8FC2996AE50005FA4BF /* User.swift in Sources */,

@@ -18,5 +18,6 @@ let DB_ref =  Database.database().reference()
 let REF_user =  Database.database().reference().child("users")
 
 let REF_tweet =  Database.database().reference().child("tweets")
+let REF_USER_TWEET =  Database.database().reference().child("user-tweets")
 
 

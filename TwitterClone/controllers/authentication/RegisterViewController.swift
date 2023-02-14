@@ -128,9 +128,9 @@ class RegisterViewController: UIViewController {
                   let window = windowScene.windows.first else { return }
 
             
+            self.navigationController?.popViewController(animated: true)
             guard let vc = window.rootViewController as? MainTabViewController else {return}
                     vc.showLoginUserIfNotLogin()
-            self.dismiss(animated: true)
         }
     }
     

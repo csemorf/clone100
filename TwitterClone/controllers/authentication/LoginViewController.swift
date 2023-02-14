@@ -92,12 +92,11 @@ class LoginViewController: UIViewController {
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                   let window = windowScene.windows.first else { return }
 
-            
             guard let vc = window.rootViewController as? MainTabViewController else {return}
                     vc.showLoginUserIfNotLogin()
-                    
-            
             self.dismiss(animated: true)
+            
+            
             
         }
     }

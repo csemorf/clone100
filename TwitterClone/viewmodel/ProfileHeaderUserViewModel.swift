@@ -8,13 +8,15 @@
 import UIKit
 
 
-class ProfileHeaderViewModel {
+class ProfileHeaderUserViewModel {
     var user:User
     
     init(user:User){
         self.user = user
     }
-    
+    var usernameText:String {
+        return "@" + user.username
+    }
     var followings:NSAttributedString? {
         return attributedText(withValue: 2, text: "followings")
         
@@ -27,7 +29,7 @@ class ProfileHeaderViewModel {
         return user.isCurrentUser ? "Edit Profile" : "Following"
     }
     
-  
+    
     
     fileprivate func attributedText(withValue value: Int, text: String) -> NSAttributedString {
         let attributedTitle = NSMutableAttributedString(string: "\(value)",
@@ -37,4 +39,6 @@ class ProfileHeaderViewModel {
         return attributedTitle
                                                        
     }
+
 }
+

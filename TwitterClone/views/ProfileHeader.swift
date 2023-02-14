@@ -7,6 +7,9 @@
 
 import UIKit
 
+protocol ProfileHeaderProtocol:AnyObject {
+    func handleDismiss()
+}
 
 class ProfileHeader:UICollectionReusableView {
     
@@ -15,7 +18,7 @@ class ProfileHeader:UICollectionReusableView {
             configure()
         }
     }
-
+    weak var delegate:ProfileHeaderProtocol?
     
     
     private lazy var containerView: UIView = {
@@ -66,7 +69,7 @@ class ProfileHeader:UICollectionReusableView {
     
     
         @objc func handleDismissal(){
-
+            delegate?.handleDismiss()
         }
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
@@ -118,20 +121,24 @@ class ProfileHeader:UICollectionReusableView {
     
     
     @objc func handleEditProfileFollow(){
+//        guard user?.isCurrentUser == false else {return}
+        
         
     }
     
     
-    
     func configure() {
         guard let user = user else {return}
-        let vm = ProfileHeaderViewModel(user:user)
+        let vm = ProfileHeaderUserViewModel(user:user)
         
         profileImageView.sd_setImage(with: user.profileImageUrl)
-        
+            
         editProfileFollowButton.setTitle(vm.actionButtonTitle, for: .normal)
         followersLabel.attributedText = vm.followers
         followingLabel.attributedText = vm.followings
+        
+        fullnameLabel.text = user.fullname
+        usernameLabel.text = vm.usernameText
     }
     
     override init(frame: CGRect) {
